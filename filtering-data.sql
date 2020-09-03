@@ -14,7 +14,9 @@ SELECT
 FROM
 	sales
 WHERE
-	purchase_date > '2018-08-31';
+	purchase_date >= CURRENT_DATE - '2 years':: interval
+ORDER BY
+	purchase_date;
 
 --Get a list of sales where the deposit was above 5000 or the customer payed with American Express.
 SELECT
