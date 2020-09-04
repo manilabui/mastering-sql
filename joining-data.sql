@@ -4,7 +4,7 @@
 select 
 	sale_id, st.name
 from sales s
-left join salestypes st
+join salestypes st
 	on s.sales_type_id = st.sales_type_id;
 
 -- Get a list of sales with the VIN of the vehicle, the first name and last name of the customer, first name and last name of the employee who made the sale and the name, city and state of the dealership.
@@ -19,25 +19,24 @@ select
 	d.city as dealership_city,
 	d.state as dealership_state
 from sales s
-inner join vehicles v
+join vehicles v
 	on s.vehicle_id = v.vehicle_id
-left join customers c
+join customers c
 	on s.customer_id = c.customer_id
-left join employees e
+join employees e
 	on s.employee_id = e.employee_id
-left join dealerships d
+join dealerships d
 	on s.dealership_id = d.dealership_id;
 
 -- Get a list of sales with the VIN of the vehicle, the first name and last name of the customer, first name and last name of the employee who made the sale and the name, city and state of the dealership.
 select
 	business_name,
-	first_name,
-	last_name
+	concat(first_name, ' ', last_name) as employee_name
 from dealerships d
 left join dealershipemployees de
 	on d.dealership_id = de.dealership_id
 left join employees e
-	on de.dealership_id = e.dealership_id;
+	on de.employee_id = e.employee_id;
 
 -- Get a list of vehicles with the names of the body type, make, model and color.
 select
